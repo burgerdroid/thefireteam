@@ -1,0 +1,4 @@
+#apiout tbody tr td:first-child {
+	background-color: orange;
+	font-weight: bold;
+}
