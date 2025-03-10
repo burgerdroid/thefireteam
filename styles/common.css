@@ -25,6 +25,7 @@ li {
 #apiout th {
     font-weight: bold;
     background-color: white;
+	padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
 #apiout {
