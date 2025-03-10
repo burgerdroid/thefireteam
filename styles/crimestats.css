@@ -1,4 +1,7 @@
 #apiout tbody tr td:first-child {
 	background-color: orange;
 	font-weight: bold;
+	position: sticky;
+	left: 0;
 }
+
