@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content-type="utf-8" charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Fire Team - API Playground</title>
+<link rel="stylesheet" type="text/css" href="styles/common.css" /> 
+<link rel="stylesheet" type="text/css" href="styles/playground.css" /> 
+</head>
+
+<body>
+<h1>API Playground</h1>
+<p>Enter your API key and a user ID (if not yourself). Tick the selections you want to query and 
+then click on Run Query. The result will appear below the selection groups.</p>
+<p>NOTE THAT - you can only access Public selections for other users unless that user has explicitly
+provided you with one of their API keys with a suitable access level.</p>
+
+Your API Key <input id="apikey" type="text"><br>
+User ID <input id="userid" type="text"><br>
+Selections <input id="selections" type="text"><br>
+<input type="radio" name="apiver" value="v1" checked="checked">v1 API<input type="radio" name="apiver" value="v2">v2 API<br>
+<input id="runquery" type="button" value="Run Query" onclick="javascript:parseApiQuery();">
+<br><br>
+<h2>Selections - Grouped by Required API Key Access Level</h2>
+<p>*This selection is only available in API v1.<br>
+**This selection is only available in API v2.<br>
+***This selection has different access in API v1 and v2.
+</p>
+<fieldset>
+<legend>Public Access</legend>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select0" value="basic">basic</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select1" value="bazaar">bazaar</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select2" value="discord">discord</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select3" value="display">display</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select4" value="personalstats">personalstats</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select5" value="profile">profile</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select6" value="timestamp">timestamp</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select7" value="lookup">lookup</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select8" value="properties">properties</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select9" value="icons">icons</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select10" value="medals">medals</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select11" value="criminalrecord">criminalrecord</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select12" value="hof">***hof</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select13" value="forumposts">**forumposts</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select14" value="forumthreads">**forumthreads</span>
+<span class="publicaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select15" value="bounties">bounties</span>
+</fieldset>
+
+<fieldset>
+<legend>Minimal Access</legend>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select16" value="ammo">ammo</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select17" value="bars">bars</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select18" value="cooldowns">cooldowns</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select19" value="crimes">crimes</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select20" value="education">education</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select21" value="gym">gym</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select22" value="honors">honors</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select23" value="inventory">inventory</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select24" value="equipment">equipment</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select25" value="jobpoints">jobpoints</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select26" value="merits">merits</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select27" value="missions">missions</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select28" value="notifications">notifications</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select29" value="perks">perks</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select30" value="refills">refills</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select31" value="revives">revives</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select32" value="revivesfull">revivesfull</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select33" value="skills">skills</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select34" value="travel">travel</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select35" value="weaponexp">weaponexp</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select36" value="workstats">workstats</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select37" value="enlistedcars">**enlistedcars</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select38" value="races">**races</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select39" value="forumsubscribedthreads">**forumsubscribedthreads</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select40" value="forumfeed">**forumfeed</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select41" value="forumfriends">**forumfriends</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select42" value="calendar">**calendar</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select43" value="jobranks">jobranks</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select44" value="**organizedCrime">organizedCrime</span>
+</fieldset>
+<fieldset>
+<legend>Limited Access</legend>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select45" value="attacks">attacks</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select46" value="attacksfull">attacksfull</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select47" value="battlestats">battlestats</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select48" value="events">events</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select49" value="messages">messages</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select50" value="money">money</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select51" value="networth">networth</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select52" value="newevents">newevents</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select53" value="newmessages">newmessages</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select54" value="reports">reports</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select55" value="stocks">stocks</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select56" value="itemmarket">itemmarket</span>
+<span class="limitedaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select57" value="factionBalance">**factionBalance</span>
+</fieldset>
+<fieldset>
+<legend>Full Access</legend>
+<span class="fullaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select58" value="log">log</span>
+</fieldset>
+<h2>Query Result</h2>
+<tt id="queryurl">URL of the query will appear here and table of data below.</tt><br><br>
+
+<table id="apiout">
+<thead>
+<tr>
+    <th>Key</th><th>Value</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
+
+<script src="scripts/tornapi.js"></script>
+<script src="scripts/playground.js"></script>
+</body>
+</html>
