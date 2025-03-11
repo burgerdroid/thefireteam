@@ -2,7 +2,7 @@ let tornApiObj = new tornApi("faction")
 let memberData = new Array();
 let memberCount = 0;
 let intervalObj;
-
+mathSum = (a,b) => a+b;
 
 function sortByLevel(a, b) {
     if (a[0] == b[0]) {
@@ -36,8 +36,13 @@ function printMembersToTable() {
     
     for (var r=0; r<memberData.length; r++) {
     		let row = table.insertRow(table.rows.length);
-    		for (var c=1; c<memberData[r].length; c++) {
-    	   		cell = row.insertCell(c-1);
+			let cell = row.insertCell(0);
+			cell.innerHTML = memberData[r][1];
+			cell = row.insertCell(1);
+			cell.innerHTML = memberData[r].toSpliced(0,2).reduce(mathSum);
+			//starting at index 2 to skip level and name
+    		for (var c=2; c<memberData[r].length; c++) {
+    	   		cell = row.insertCell(c);
         		cell.innerHTML = memberData[r][c];
         	}
      }
@@ -89,3 +94,4 @@ function getTeamCrimeStats() {
         getMemberCrimeStats(result['members']);
      });
 }
+

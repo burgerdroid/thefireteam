@@ -5,3 +5,7 @@
 	left: 0;
 }
 
+#apiout tbody tr td:nth-child(2) {
+	font-weight: bold;
+}
+
