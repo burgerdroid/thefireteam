@@ -14,7 +14,7 @@ function sortByLevel(a, b) {
  }
 
 
- function allDataCollected() {
+function allDataCollected() {
  	if (memberData.length == memberCount) {
  		clearInterval(intervalObj);
  		printMembersToTable();
@@ -22,7 +22,7 @@ function sortByLevel(a, b) {
  }
 
 
- function clearTable(tid) {
+function clearTable(tid) {
     let table = document.getElementById(tid).getElementsByTagName('tbody')[0];
     while (table.rows.length > 0) {
         table.deleteRow(0);
@@ -32,7 +32,7 @@ function sortByLevel(a, b) {
 
 function printMembersToTable() {
 	memberData.sort(sortByLevel);
-	let table = document.getElementById('apiout').getElementsByTagName('tbody')[0];
+	let table = document.getElementById('crimeskills').getElementsByTagName('tbody')[0];
     
     for (var r=0; r<memberData.length; r++) {
     		let row = table.insertRow(table.rows.length);
@@ -83,7 +83,7 @@ function getMemberCrimeStats(data) {
 
 
 function getTeamCrimeStats() {
-	clearTable("apiout");
+	clearTable("crimeskills");
 	let apiKey = document.getElementById("apikey").value;
 	tornApiObj.setQueryType("faction");
 	tornApiObj.setApiVer("v1")

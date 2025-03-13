@@ -1,21 +1,21 @@
-#apiout {
+.apiout {
 	border-collapse: separate;
 	border-spacing: 0;
 }
 
-#apiout tbody tr td:first-child {
+.apiout tbody tr td:first-child {
 	background-color: orange;
 	font-weight: bold;
 	position: sticky;
 	left: 0;
 }
 
-#apiout thead tr th:first-child {
+.apiout thead tr th:first-child {
 	position: sticky;
 	left: 0;
 }
 
-#apiout tbody tr td:nth-child(2) {
+.apiout tbody tr td:nth-child(2) {
 	font-weight: bold;
 }
 
