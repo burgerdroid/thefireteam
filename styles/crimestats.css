@@ -1,3 +1,8 @@
+#apiout {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+
 #apiout tbody tr td:first-child {
 	background-color: orange;
 	font-weight: bold;
@@ -5,7 +10,19 @@
 	left: 0;
 }
 
+#apiout thead tr th:first-child {
+	position: sticky;
+	left: 0;
+}
+
 #apiout tbody tr td:nth-child(2) {
 	font-weight: bold;
+}
+
+.tscroll {
+	width: auto;
+	overflow-x: scroll;
+	margin-bottom: 1rem;
+	border: 1px solid black;
 }
 
