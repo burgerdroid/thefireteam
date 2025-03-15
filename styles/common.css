@@ -1,4 +1,4 @@
-  body {
+body {
     font-family: sans-serif;
     font-size: 10pt;
     line-height: 1.1em;
@@ -22,22 +22,22 @@ li {
     line-height: 1.25rem;
 }
 
-#apiout th {
+.apiout th {
     font-weight: bold;
     background-color: white;
 	padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
-#apiout {
+.apiout {
     border-collapse: collapse;
 }
 
-#apiout td {
+.apiout td {
     border: 1px solid black;
     padding: 0.5rem 2rem 0.5rem 2rem;
 }
 
-#apiout tbody tr:nth-child(odd) {
+.apiout tbody tr:nth-child(odd) {
   background-color: lightgrey;
 }
 

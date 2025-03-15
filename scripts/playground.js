@@ -1,7 +1,7 @@
 tornApiObj = new tornApi("user");
 
 function printOut(data) {
-    let table = document.getElementById('apiout').getElementsByTagName('tbody')[0];
+    let table = document.getElementById('apitable').getElementsByTagName('tbody')[0];
     for (var key in data) {
         if (typeof data[key] === typeof {'1':1}) {
             var row = table.insertRow(table.rows.length);
@@ -41,7 +41,7 @@ function toggleValue(thisid) {
 
 
 function parseApiQuery() {
-    clearTable("apiout");
+    clearTable("apitable");
     tornApiObj.setTypeID(document.getElementById('userid').value);
     tornApiObj.setApiKey(document.getElementById('apikey').value);
     tornApiObj.setApiVer(document.querySelector("input[name=apiver]:checked").value);
