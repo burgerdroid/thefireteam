@@ -1,5 +1,7 @@
 let tornApiObj = new tornApi("faction")
 let memberData = new Array();
+memberData['crimeskills'] = new Array();
+memberData['crimecount'] = new Array();
 let memberCount = 0;
 let intervalObj;
 mathSum = (a,b) => a+b;
@@ -15,9 +17,10 @@ function sortByLevel(a, b) {
 
 
 function allDataCollected() {
- 	if (memberData.length == memberCount) {
+ 	if (memberData['crimeskills'].length == memberCount) {
  		clearInterval(intervalObj);
- 		printMembersToTable();
+ 		printMembersToTable('crimeskills');
+		printMembersToTable('crimecount');
  	}
  }
 
@@ -30,37 +33,45 @@ function clearTable(tid) {
 }
 
 
-function printMembersToTable() {
-	memberData.sort(sortByLevel);
-	let table = document.getElementById('crimeskills').getElementsByTagName('tbody')[0];
-    
-    for (var r=0; r<memberData.length; r++) {
+function printMembersToTable(tab) {
+	memberData[tab].sort(sortByLevel);
+	let table = document.getElementById(tab).getElementsByTagName('tbody')[0];
+    for (var r=0; r<memberData[tab].length; r++) {
     		let row = table.insertRow(table.rows.length);
 			let cell = row.insertCell(0);
-			cell.innerHTML = memberData[r][1];
+			cell.innerHTML = memberData[tab][r][1];
+			console.log(cell.innerHTML);
 			cell = row.insertCell(1);
-			cell.innerHTML = memberData[r].toSpliced(0,2).reduce(mathSum);
+			cell.innerHTML = memberData[tab][r].toSpliced(0,2).reduce(mathSum);
 			//starting at index 2 to skip level and name
-    		for (var c=2; c<memberData[r].length; c++) {
+    		for (var c=2; c<memberData[tab][r].length; c++) {
     	   		cell = row.insertCell(c);
-        		cell.innerHTML = memberData[r][c];
+        		cell.innerHTML = memberData[tab][r][c];
         	}
      }
 }
 
 
 function getMemberData(data) {   
-    let crimeKeys = new Array("searchforcashskill","bootleggingskill","graffitiskill",
+	let crimeKeys = new Array('crimeskills','crimecount');
+    let crimeFields = new Array();
+	crimeFields['crimeskills'] = new Array("searchforcashskill","bootleggingskill","graffitiskill",
 						"shopliftingskill","pickpocketingskill","cardskimmingskill",
 						"burglaryskill","hustlingskill","disposalskill",
 						"crackingskill","forgeryskill","scammingskill");
-    memberData.push([]);
-    let i = memberData.length - 1;
-    memberData[i].push(data['level'])
-    memberData[i].push(data['name'])
-    for (var j in crimeKeys) {
-    	   memberData[i].push(data["personalstats"][crimeKeys[j]]);
-    }
+
+	crimeFields['crimecount'] = new Array("vandalism","theft","counterfeiting","fraud","illicitservices",
+						"cybercrime","extortion","illegalproduction");
+    
+	for (var tab in crimeKeys) {
+			memberData[crimeKeys[tab]].push([]);
+    		let i = memberData[crimeKeys[tab]].length - 1;
+    		memberData[crimeKeys[tab]][i].push(data['level'])
+    		memberData[crimeKeys[tab]][i].push(data['name'])
+    		for (var j in crimeFields[crimeKeys[tab]]) {
+				memberData[crimeKeys[tab]][i].push(data["personalstats"][crimeFields[crimeKeys[tab]][j]]);
+    		}
+	}
 }
 
 
@@ -84,6 +95,7 @@ function getMemberCrimeStats(data) {
 
 function getTeamCrimeStats() {
 	clearTable("crimeskills");
+	clearTable("crimecount");
 	let apiKey = document.getElementById("apikey").value;
 	tornApiObj.setQueryType("faction");
 	tornApiObj.setApiVer("v1")
