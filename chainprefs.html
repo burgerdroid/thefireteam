@@ -1,0 +1,94 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content-type="utf-8" charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" type="text/css" href="styles/common.css" />
+<title>The Fire Team - Chain Time Preferences</title>
+<style>
+body {
+        font-family: sans-serif;
+}
+
+table {
+        border-collapse: collapse;
+}
+
+td, th {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        border: 1px solid black;
+        text-align: center;
+}
+
+th {
+        padding: 1rem;
+}
+
+select {
+        margin-left: 1rem;
+}
+
+#nowtime {
+        font-weight: bold;
+}
+</style>
+</head>
+<body>
+<h1>Chain Organiser</h1>
+<p>Your current date/time/timezone:</p>
+<p><span id="nowtime"></span>
+<br><i>(ensure this is your correct local time)</i></p>
+<p>Please select times where it would be suitable for you to work with Faction team mates on a Chain.</p>
+<h2>Fetch Your User ID</h2>
+Public Key<br>
+<input id="apikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();"><br>
+<input id="getuidbtn" type="button" onclick="getUserId();" value="GET" disabled="disabled"><br>
+<form method="post" onsubmit="saveLocal();" action="other/timesubmit.php">
+<input id="userid" name="userid" type="text" readonly>
+<h2>Torn to Local Time conversion</h2>
+<p>Check your suitable hours then click on Submit.  We will schedule daily on-the-hour Chain events for the most popular times.
+<br>Revisit to update this information at any time.</p>
+<input id="submitBtn" type="submit" value="Submit" disabled="disabled"><br><br>
+<table id="timetable">
+<thead>
+<tr><th>Torn City Time</th><th>Your Local Time</th><tr>
+</thead>       
+<tbody>
+<tr><td><input id="checkhour0" name="checkhour0" type="checkbox" value="00:00">00:00</td><td></td></tr>
+<tr><td><input id="checkhour1" name="checkhour1" type="checkbox" value="01:00">01:00</td><td></td></tr>
+<tr><td><input id="checkhour2" name="checkhour2" type="checkbox" value="02:00">02:00</td><td></td></tr>
+<tr><td><input id="checkhour3" name="checkhour3" type="checkbox" value="03:00">03:00</td><td></td></tr>
+<tr><td><input id="checkhour4" name="checkhour4" type="checkbox" value="04:00">04:00</td><td></td></tr>
+<tr><td><input id="checkhour5" name="checkhour5" type="checkbox" value="05:00">05:00</td><td></td></tr>
+<tr><td><input id="checkhour6" name="checkhour6" type="checkbox" value="06:00">06:00</td><td></td></tr>
+<tr><td><input id="checkhour7" name="checkhour7" type="checkbox" value="07:00">07:00</td><td></td></tr>
+<tr><td><input id="checkhour8" name="checkhour8" type="checkbox" value="08:00">08:00</td><td></td></tr>
+<tr><td><input id="checkhour9" name="checkhour9" type="checkbox" value="09:00">09:00</td><td></td></tr>
+<tr><td><input id="checkhour10" name="checkhour10" type="checkbox" value="10:00">10:00</td><td></td></tr>
+<tr><td><input id="checkhour11" name="checkhour11" type="checkbox" value="11:00">11:00</td><td></td></tr>
+<tr><td><input id="checkhour12" name="checkhour12" type="checkbox" value="12:00">12:00</td><td></td></tr>
+<tr><td><input id="checkhour13" name="checkhour13" type="checkbox" value="13:00">13:00</td><td></td></tr>
+<tr><td><input id="checkhour14" name="checkhour14" type="checkbox" value="14:00">14:00</td><td></td></tr>
+<tr><td><input id="checkhour15" name="checkhour15" type="checkbox" value="15:00">15:00</td><td></td></tr>
+<tr><td><input id="checkhour16" name="checkhour16" type="checkbox" value="16:00">16:00</td><td></td></tr>
+<tr><td><input id="checkhour17" name="checkhour17" type="checkbox" value="17:00">17:00</td><td></td></tr>
+<tr><td><input id="checkhour18" name="checkhour18" type="checkbox" value="18:00">18:00</td><td></td></tr>
+<tr><td><input id="checkhour19" name="checkhour19" type="checkbox" value="19:00">19:00</td><td></td></tr>
+<tr><td><input id="checkhour20" name="checkhour20" type="checkbox" value="20:00">20:00</td><td></td></tr>
+<tr><td><input id="checkhour21" name="checkhour21" type="checkbox" value="21:00">21:00</td><td></td></tr>
+<tr><td><input id="checkhour22" name="checkhour22" type="checkbox" value="22:00">22:00</td><td></td></tr>
+<tr><td><input id="checkhour23" name="checkhour23" type="checkbox" value="23:00">23:00</td><td></td></tr>
+</tbody>
+</table>
+</form>
+<script src="scripts/tornapi.js"></script>
+<script src="scripts/chainprefs.js"></script>
+</body>
+</html>
