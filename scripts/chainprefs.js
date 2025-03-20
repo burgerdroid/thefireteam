@@ -39,8 +39,6 @@ function saveLocal() {
             localStorage.setItem(nextId,nextCheck.value);
         }
     }
-    console.log(timeData);
-    alert("DONE");
     return true;
 }
 
@@ -60,7 +58,6 @@ function getUserId() {
     tornApiObj.setSelections(["basic"]);
     url = tornApiObj.getQueryUrl();
     getData(url).then(result => {
-        console.log("result = ",result);
         if (result.error) {
             alert("Error: " + result.error.code + " - " + result.error.error);
             return;
