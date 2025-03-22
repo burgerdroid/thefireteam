@@ -7,10 +7,11 @@ let tornApiObj = new tornApi("user");
 
 function loadLocal() {
     userId = localStorage.getItem("uid");
-    if (userId === undefined) {
+    if (userId === null) {
         return;
     }
     document.getElementById("userid").value = userId;
+	document.getElementById("displayuid").innerHTML = userId;
     document.getElementById("submitBtn").disabled = false;
     for (i=0; i<=23; i++) {
         nextId = "checkhour" + i;
@@ -63,7 +64,10 @@ function getUserId() {
             return;
         }
         if (result.player_id) {
+			userId = result.player_id;
             document.getElementById('userid').value = userId;
+			document.getElementById('displayuid').innerHTML = userId;
+			document.getElementById('submitBtn').disabled = false;
             localStorage.setItem("uid", userId);
         }
         else {
@@ -88,6 +92,9 @@ function fillTimeTable() {
         let row = timeTable[0].getElementsByTagName('tr')[i];
         let cell = row.getElementsByTagName('td')[1];
         let localHour = (i+offset) % 24;
+		if (localHour < 0) {
+			localHour += 24;
+		}
         cell.innerHTML = ('00'+ localHour).slice(-2) + ":00";
     }
 }
