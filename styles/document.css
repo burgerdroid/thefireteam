@@ -1,0 +1,47 @@
+@page {
+  size: A4;
+  margin: 20mm 10mm 20mm 10mm;
+}
+@media print {
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+  .page {
+    padding: 0;
+  }
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    margin: 0;
+    background-color: #fff;
+    padding: 1rem;
+    padding-bottom: 0;
+}
+
+img {
+    border: 1px solid black;
+    padding: 0.1rem;
+    margin-bottom: 0.5rem;
+    margin-top: 0.5rem;
+    margin-left: auto;
+    margin-right: auto;
+    image-align: center;
+    display: block;
+    max-width: 100%;
+ }
+li {
+    margin-top: 1.25rem
+ }
+
+li::marker {
+    font-weight: bold;
+}
+ ol ol {
+    list-style-type: lower-alpha;
+ }
