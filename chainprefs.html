@@ -38,10 +38,21 @@ select {
 #nowtime {
         font-weight: bold;
 }
+
+#userid {
+		display: None;
+}
+#displayuid {
+		border: 1px solid black;
+		width: 10rem;
+		padding: 0.1rem;
+}
 </style>
 </head>
 <body>
-<h1>Chain Organiser</h1>
+<header>
+<h1><a href="index.html"><img class="logo" src="images/fireteamlogo.jpg" /></a>Chain Organiser</h1>
+</header>
 <p>Your current date/time/timezone:</p>
 <p><span id="nowtime"></span>
 <br><i>(ensure this is your correct local time)</i></p>
@@ -51,7 +62,8 @@ Public Key<br>
 <input id="apikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();"><br>
 <input id="getuidbtn" type="button" onclick="getUserId();" value="GET" disabled="disabled"><br>
 <form method="post" onsubmit="saveLocal();" action="other/timesubmit.php">
-<input id="userid" name="userid" type="text" readonly>
+<input id="userid" name="userid" type="text">
+<br>User ID<div id="displayuid">&nbsp;</div>
 <h2>Torn to Local Time conversion</h2>
 <p>Check your suitable hours then click on Submit.  We will schedule daily on-the-hour Chain events for the most popular times.
 <br>Revisit to update this information at any time.</p>
@@ -89,6 +101,6 @@ Public Key<br>
 </table>
 </form>
 <script src="scripts/tornapi.js"></script>
-<script src="scripts/chainprefs.js"></script>
+<script src="scripts/chainprefs.js?v=3"></script>
 </body>
 </html>
