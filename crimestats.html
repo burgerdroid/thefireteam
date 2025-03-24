@@ -14,8 +14,10 @@
 <header>
     <h1><a href="index.html"><img class="logo" src="images/fireteamlogo.jpg"  alt="The Fire Team Logo"></a>Faction Crime Skill Statistics</h1>
 </header>
-Your API Key <input id="apikey" type="text"><br>
-<input id="runquery" type="button" value="Run Query" onclick="javascript:getTeamCrimeStats();">
+<form onsubmit="return false;" autocomplete="on">
+Your API Key <input id="apikey" name="tornapikey" type="text"><br>
+<input id="runquery" type="submit" value="Run Query" onclick="getTeamCrimeStats();">
+</form>
 <br><br>
 <h2>Crime Skills</h2>
 <div class="tscroll">

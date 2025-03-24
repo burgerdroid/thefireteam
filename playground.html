@@ -23,11 +23,12 @@ then click on Run Query. The result will appear below the selection groups.</p>
 <p>NOTE THAT - you can only access Public selections for other users unless that user has explicitly
 provided you with one of their API keys with a suitable access level.</p>
 
-Your API Key <input id="apikey" type="text"><br>
+<form onsubmit="return false;" autocomplete="on">
+Your API Key <input id="apikey" name="tornapikey" type="text"><br>
 User ID <input id="userid" type="text"><br>
 Selections <input id="selections" type="text"><br>
 <input type="radio" name="apiver" value="v1" checked="checked">v1 API<input type="radio" name="apiver" value="v2">v2 API<br>
-<input id="runquery" type="button" value="Run Query" onclick="javascript:parseApiQuery();">
+<input id="runquery" type="submit" value="Run Query" onclick="parseApiQuery();">
 <br><br>
 <h2>Selections - Grouped by Required API Key Access Level</h2>
 <p>*This selection is only available in API v1.<br>
@@ -84,7 +85,7 @@ Selections <input id="selections" type="text"><br>
 <span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select41" value="forumfriends">**forumfriends</span>
 <span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select42" value="calendar">**calendar</span>
 <span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select43" value="jobranks">jobranks</span>
-<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select44" value="**organizedCrime">organizedCrime</span>
+<span class="minimalaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select44" value="organizedCrime">**organizedCrime</span>
 </fieldset>
 <fieldset>
 <legend>Limited Access</legend>
@@ -107,6 +108,7 @@ Selections <input id="selections" type="text"><br>
 <legend>Full Access</legend>
 <span class="fullaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select59" value="log">log</span>
 </fieldset>
+</form>
 <h2>Query Result</h2>
 <samp id="queryurl">URL of the query will appear here and table of data below.</samp><br><br>
 

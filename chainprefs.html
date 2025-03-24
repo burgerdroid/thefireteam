@@ -57,9 +57,11 @@ select {
 <br><i>(ensure this is your correct local time)</i></p>
 <p>Please select times where it would be suitable for you to work with Faction team mates on a Chain.</p>
 <h2>Fetch Your User ID</h2>
+<form onsubmit="return false;" autocomplete="on">
 Public Key<br>
-<input id="apikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();"><br>
-<input id="getuidbtn" type="button" onclick="getUserId();" value="GET" disabled="disabled"><br>
+<input id="apikey" name="tornapikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();"><br>
+<input id="getuidbtn" type="submit" onclick="getUserId();" value="GET" disabled="disabled"><br>
+</form>
 <form method="post" onsubmit="saveLocal();" action="other/timesubmit.php">
 <input id="userid" name="userid" type="text">
 <br>User ID<div id="displayuid">&nbsp;</div>
