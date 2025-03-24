@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta content-type="utf-8" charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
-<link rel="stylesheet" type="text/css" href="styles/common.css" /> 
-<link rel="stylesheet" type="text/css" href="styles/playground.css" />
+<link rel="stylesheet" type="text/css" href="styles/common.css"> 
+<link rel="stylesheet" type="text/css" href="styles/playground.css">
 <title>The Fire Team - API Playground</title> 
 </head>
 
 <body>
 <header>
-<h1><a href="index.html"><img class="logo" src="images/fireteamlogo.jpg" /></a>API Playground</h1>
+    <h1>
+        <a href="index.html"><img class="logo" src="images/fireteamlogo.jpg" alt="The Fire Team Logo"></a>API Playground
+    </h1>
 </header>
 <p>Enter your API key and a user ID (if not yourself). Tick the selections you want to query and 
 then click on Run Query. The result will appear below the selection groups.</p>
+
 <p>NOTE THAT - you can only access Public selections for other users unless that user has explicitly
 provided you with one of their API keys with a suitable access level.</p>
 
@@ -106,7 +108,7 @@ Selections <input id="selections" type="text"><br>
 <span class="fullaccess"><input type="checkbox" onclick="javascript:toggleValue(this);" id="select59" value="log">log</span>
 </fieldset>
 <h2>Query Result</h2>
-<tt id="queryurl">URL of the query will appear here and table of data below.</tt><br><br>
+<samp id="queryurl">URL of the query will appear here and table of data below.</samp><br><br>
 
 <table id="apitable" class="apiout">
 <thead>
