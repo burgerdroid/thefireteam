@@ -28,7 +28,9 @@ if (isset($_GET['doc'])) {
 	<title><?php $tmp = explode("\n", $content); echo $tmp[0];?></title>
 </head>
 <body>
-<textarea id="md-src" style="display: none;"><?php echo $content; ?></textarea>
+<textarea id="md-src" style="display: none;">
+<?php echo $content; ?>
+</textarea>
 <div class="page" id="md-block"></div>
 <?php
 if ($content == "") {
