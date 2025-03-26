@@ -22,8 +22,7 @@ body {
 .page {
     margin: 0;
     background-color: #fff;
-    padding: 1rem;
-    padding-bottom: 0;
+    padding: 1rem 2rem 0 2rem;
     line-height: 1.25;
 }
 
