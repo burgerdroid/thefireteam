@@ -1,13 +1,12 @@
 <?php
 if (isset($_GET['doc'])) {
-    //sanitise doc file name
-    $fname = "";
-    foreach (str_split($_GET['doc']) as $char) {
-        if (ord($char) < 97 or ord($char) > 122) {
-            continue;
-        }
-        $fname = $fname . $char;
-    }
+	//sanitise doc file name
+	$pattern = "/^[\w]+$/";
+	$fname = "";
+
+	if (preg_match($pattern, $_GET['doc']) == 1) {
+		$fname = $_GET['doc'];
+	}
     if ($fname == "") {
         $content = "";
     }
@@ -26,7 +25,7 @@ if (isset($_GET['doc'])) {
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="styles/document.css"> 
-    <title>Markdown Test</title>
+	<title><?php $tmp = explode("\n", $content); echo $tmp[0];?></title>
 </head>
 <body>
 <textarea id="md-src" style="display: none;"><?php echo $content; ?></textarea>

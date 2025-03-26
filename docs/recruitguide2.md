@@ -1,5 +1,5 @@
-# Recruit Guide: Education, Money, and Merits
-
+Recruit Guide: Education, Money, and Merits
+---
 
 ## Education
 

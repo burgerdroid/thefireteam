@@ -1,5 +1,5 @@
-# Recruit Guide: Levelling, Attacking, and Training
-
+Recruit Guide: Levelling, Attacking, and Training
+---
 
 ## Levelling Up
 
