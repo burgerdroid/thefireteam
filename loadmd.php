@@ -24,12 +24,12 @@ if (isset($_GET['doc'])) {
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="stylesheet" type="text/css" href="styles/document.css"> 
+    <link rel="stylesheet" type="text/css" href="styles/markdown.css">  
 	<title><?php $tmp = explode("\n", $content); echo $tmp[0];?></title>
 </head>
 <body>
 <textarea id="md-src" style="display: none;"><?php echo $content; ?></textarea>
-<section id="md-block"></section>
+<div class="page" id="md-block"></div>
 <?php
 if ($content == "") {
     echo "<h1>Invalid Document</h1>";
