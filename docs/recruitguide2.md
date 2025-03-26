@@ -1,5 +1,5 @@
 Recruit Guide: Education, Money, and Merits
-===========================================
+===
 
 ## Education
 
@@ -22,6 +22,7 @@ The quickest way to make money other than winning the lottery, is to buy a donat
 
 If you keep a lot of money in your possession, be prepared to lose some of it when you get mugged. If the mugger gets a large payout, they will most likely mug you more often. There are several ways to protect your money. One is to use the faction bank. It is safe but you must ask a banker to withdraw your funds for you. A good way to keep cash where you can access anytime you want is to buy donator packs from the item market. You can usually get them for less than $24,000,000 and the pawn shop will buy them from you for $23,500,000 each. Other methods can be used such as buying and selling stocks, buying and selling plushies and flowers on the item market.
 
+*NOTE: The value of items may be inaccurate as the market value of items can fluctuate.*
 
 ## Merits
 
