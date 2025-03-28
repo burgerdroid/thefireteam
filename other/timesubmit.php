@@ -7,7 +7,7 @@ if (isset($_POST['userid'])) {
     }
     fclose($fh);
     $savedEntries = json_decode($rawdata, true);
-    $userid = $_POST['userid'];
+    $userid = md5($_POST['userid']);
     $savedEntries[$userid] = array();
     foreach($_POST as $key=>$value) {
         if ($key != "userid") {
