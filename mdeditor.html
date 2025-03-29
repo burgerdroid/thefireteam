@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="styles/markdown.css"> 
+    <title>Markdown Test</title>
+</head>
+<body>
+<textarea id="md-src" rows="20" style="margin: 1rem; width: 90%;">
+Markdown Editor
+===
+
+## Steps for usage
+
+1. Markdown goes __here__.
+   * _Typy typy._   
+     More text for this point.   
+     ...and a little bit more.
+
+2. Originally had an update button - it now updates as you type
+   * Just keep typing.
+
+3. Winning.
+   * ___Yay!___
+</textarea>
+<br><button style="margin: 1rem;"onclick="displayMarkdown();">Update</button>
+<br><br><hr>
+<section class="page" id="md-block"></section>
+<script src="modules/commonmark.min.js"></script>
+<script>	
+function displayMarkdown() {
+    //let mdsrc = document.getElementById("md-src");
+    let mdblock = document.getElementById("md-block");
+    let reader = new commonmark.Parser();
+    let writer = new commonmark.HtmlRenderer();
+    let parsed = reader.parse(mdsrc.value); // parsed is a 'Node' tree
+	mdblock.innerHTML = writer.render(parsed); // result is a String
+}
+
+var mdsrc = document.getElementById('md-src');
+
+mdsrc.onkeyup = function ()
+{
+   displayMarkdown();
+};
+
+
+displayMarkdown();
+
+
+
+</script>
+</body>
+</html>
