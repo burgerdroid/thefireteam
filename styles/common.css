@@ -1,7 +1,25 @@
+@font-face {
+  font-family: sector;
+  src: url(/other/sector_017.woff);
+}
+
 html {
     font-family: sans-serif;
     font-size: 10pt;
     line-height: 1.1em;
+}
+
+header h1 {
+    display:table;
+	text-shadow: #999 0 2px 0;
+	font-family: sector;
+}
+
+header h1 span {
+    vertical-align:middle;
+    display:table-cell;
+    text-align: left;
+    line-height: normal;
 }
 
 h1 {
@@ -31,10 +49,6 @@ li {
     padding-right: 1rem;
     padding-left: 2rem;
  }
-
-header h1 {
-    display: inline-block;
-}
 
 .apiout th {
     font-weight: bold;
