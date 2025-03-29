@@ -1,0 +1,40 @@
+td {
+    text-align: right;
+    border-collapse: collapse;
+    padding: 0rem 1rem;
+    margin: 0;
+}
+
+#stockdetails, #stocktotals {
+	font-family: monospace;
+}
+
+#stocktotals {
+	font-size: 1.5rem;
+}
+
+#stocktotals td {
+	padding-bottom: 0.5rem;
+}
+
+.stockheader {
+    margin-bottom: 1rem;
+}
+
+.stockhistory {
+   padding-bottom: 2rem;
+}
+
+.stockhistory tr td:nth-child(2) {
+    padding-right: 0;
+}
+
+.stockhistory tr td:nth-child(3) {
+    padding-left: 0.3rem;
+    padding-right: 0.4rem;
+}
+
+.stockhistory tr td:nth-child(4) {
+    padding-left: 0;
+}
+

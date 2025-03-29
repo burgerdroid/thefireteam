@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta content-type="utf-8" charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="stylesheet" type="text/css" href="styles/common.css"> 
+<link rel="stylesheet" type="text/css" href="styles/stocks.css">
+<title>The Fire Team - Stocks Performance</title> 
+</head>
+<body>
+<header>
+    <h1>
+        <a href="index.html"><img class="logo" src="images/fireteamlogo.jpg" alt="The Fire Team Logo"></a>Check your Stocks
+    </h1>
+</header>
+<main>
+Your API Key <input id="apikey" type="text" placeholder="Requires a &quot;Limited&quot; API key."><br><br>
+<input id="tornStocksBtn" type="button" value="Update Stock Data" onclick="javascript:getTornStocks();"><br>
+<p id="error" style="font-family: monospace"></p><br>
+<div id="stocktotals"></div>
+<div id="stockdetails"></div>
+<script src="scripts/tornapi.js"></script>
+<script src="scripts/stocks.js"></script>
+</body>
+</html>
+
