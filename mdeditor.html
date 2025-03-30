@@ -8,53 +8,185 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="stylesheet" type="text/css" href="styles/markdown.css"> 
     <title>Markdown Test</title>
-</head>
-<body>
-<textarea id="md-src" rows="20" style="margin: 1rem; width: 90%;">
-Markdown Editor
-===
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque volutpat bibendum metus, at congue nisl iaculis vitae. Aliquam porttitor tellus ac lorem sagittis, ut volutpat metus vehicula. Sed elementum placerat ipsum, non pharetra velit finibus non. Suspendisse nisl justo, mattis id sem id, accumsan gravida risus. Mauris a dui orci. Suspendisse sed dignissim erat. Vivamus id est ex. Phasellus aliquet suscipit sem, vitae sollicitudin orci consectetur sed. Nam vitae nunc ultrices, cursus lacus eu, vestibulum erat.
-
-## Steps for usage
-
-1. Markdown goes __here__.
-   * _Typy typy._   
-     More text for this point.   
-     ...and a little bit more.
-
-2. Originally had an update button - it now updates as you type
-   * Just keep typing.
-
-3. Winning.
-   * ___Yay!___
-</textarea>
-<br><button style="margin: 1rem;"onclick="displayMarkdown();">Update</button>
-<br><br><hr>
-<section class="page" id="md-block"></section>
-<script src="modules/commonmark.min.js"></script>
-<script>	
-function displayMarkdown() {
-    //let mdsrc = document.getElementById("md-src");
-    let mdblock = document.getElementById("md-block");
-    let reader = new commonmark.Parser();
-    let writer = new commonmark.HtmlRenderer();
-    let parsed = reader.parse(mdsrc.value); // parsed is a 'Node' tree
-	mdblock.innerHTML = writer.render(parsed); // result is a String
+<style>
+button, input, select {
+	margin: 0.5rem;
+	margin-right: 0;
 }
 
-var mdsrc = document.getElementById('md-src');
+select {
+	margin-left: 1rem;
+{
 
-mdsrc.onkeyup = function ()
+#pagename {
+	margin-left: 3rem;
+}
+</style>
+</head>
+<body>
+<input type="checkbox" onchange="toggleEditor(this.checked);"> Hide Editor
+<section id="editor">
+<a id="downloadlink" target="__blank" style="display: none;"></a>
+<textarea id="md-src" rows="20" style="margin: 1rem; width: 90%;">
+CommonMark
+==========
+
+- [CommonMark Spec](https://spec.commonmark.org/0.31.2/)
+- [CommonMark Quick Ref](https://commonmark.org/help/)
+- [CommonMark Tutorial](https://commonmark.org/help/tutorial/)
+
+## Example
+
+Some plain text
+
+```
+Some code   
+or text that needs to be read easily.
+```
+
+1. Numbered points
+   with some text
+   * a bullet point
+   * and another
+2. The end
+
+
+Adding an Image
+
+![Fire Team Logo](images/fireteamlogo.jpg)
+</textarea>
+<br>
+<select id="savedpages"><option disabled selected value="$$NONE$$">Choose from saved pages</option></select>
+<button onclick="loadPage();">Load</button>
+<input type="text" id="pagename"  style="margin-left: 3rem;" placeholder="Name for this page">
+<button onclick="savePage();">Save</button>
+<button onclick="downloadPage();">Download</button>
+<button id="delbtn" onclick="deletePage();" style="margin-left: 5rem;" disabled>Delete</button>
+<input type="checkbox" id="delconfirm" onchange="toggleDelete(this.checked);"> Yes I am sure.
+<br><hr>
+</section>
+<section class="page" id="md-block"></section>
+<script src="modules/commonmark.min.js"></script>
+<script>
+const pageList = document.getElementById('savedpages');
+const mdSrc = document.getElementById('md-src');
+const mdBlock = document.getElementById('md-block');
+const pageName = document.getElementById('pagename');
+const mdReader = new commonmark.Parser();
+const mdWriter = new commonmark.HtmlRenderer();
+
+function toggleEditor(hidden) {
+	let editor = document.getElementById("editor");
+	if (hidden) {
+		editor.style.display = "none";
+	}
+	else {
+		editor.style.display = "block";
+	}
+}
+
+function toggleDelete(confirm) {
+	document.getElementById("delbtn").disabled = !confirm;
+}
+
+
+function createOption(t) {
+	let newOpt = document.createElement("option");
+	newOpt.text = t;
+	pageList.add(newOpt);
+}
+
+
+function loadPage() {
+	if (pageList.value != "$$NONE$$") {
+		mdSrc.value = window.localStorage.getItem(`$md_${pageList.value}`);
+	    pageName.value = pageList.value;
+		displayMarkdown();
+	}
+}
+
+
+function deletePage() {
+    if (pageList.value != pageName.value) {
+		alert("Listed page and name must match.");
+		return;
+	}
+	window.localStorage.removeItem(`$md_${pageName.value}`);
+	for (i=1; i<pageList.length; i++) {
+			console.log(pageList.options[i].value, pageName.value);
+			if (pageList.options[i].value == pageName.value) {
+				pageList.remove(i);
+				break;
+			}
+	}
+	alert(`"${pageName.value} removed from LocalStorage.`);
+	pageName.value = "";
+	pageList.selectedIndex = 0;
+	document.getElementById('delconfirm').checked = false;
+	document.getElementById('delbtn').disabled = true;
+}
+
+
+function savePage() {
+	if (pageName.value == "") {
+		alert("Please specify a page name");
+		return;
+	}
+	let pageSelection = -1;
+	for (i=1; i<pageList.length; i++) {
+		if (pageName.value != pageList.options[i].value) {
+			continue;
+		}
+		else {
+			pageSelection = i;
+			break;
+		}
+    }
+	if (pageSelection == -1) {
+		createOption(pageName.value);
+		pageList.selectedIndex = pageList.length - 1;
+	}
+	else {
+		pageList.selectedIndex = pageSelection;
+	}
+	window.localStorage.setItem(`$md_${pageName.value}`, mdSrc.value);
+}
+
+
+function downloadPage() {
+	let fname = document.getElementById("pagename").value;
+	let anchor = document.getElementById("downloadlink");
+	let blob = new Blob([mdSrc.value], {type: "text/plain"});
+	if (fname != "") {
+		anchor.download = `${fname}.md`;
+	}
+	else {
+        anchor.download = "page.md";	
+	}
+	anchor.href = window.URL.createObjectURL(blob);
+	anchor.click();
+}
+
+
+function displayMarkdown() {
+    let parsed = mdReader.parse(mdSrc.value);
+	mdBlock.innerHTML = mdWriter.render(parsed);
+}
+
+
+mdSrc.onkeyup = function ()
 {
    displayMarkdown();
 };
 
+for (i=0; i<window.localStorage.length; i++) {
+	let pageKey = window.localStorage.key(i);
+	if (pageKey.slice(0,4) == "$md_") {
+		createOption(pageKey.slice(4, pageKey.length));
+	}
+}
 
 displayMarkdown();
-
-
-
 </script>
 </body>
 </html>
