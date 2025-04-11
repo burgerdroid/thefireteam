@@ -10,24 +10,43 @@
     <title>Markdown Editor</title>
 <style>
 button, input, select {
-	margin: 0.5rem;
-	margin-right: 0;
+    margin: 0.25rem;
+    margin-left: 1rem;
+    margin-right: 0;
 }
 
 select {
-	margin-left: 1rem;
-{
+    margin-left: 1rem;
+}
 
-#pagename {
-	margin-left: 3rem;
+div {
+    display: table;
+    width: 98%;
+}
+
+div section {
+    display: table-cell;
+}
+
+div section:first-child {
+	border-right: 2px solid grey;
 }
 </style>
 </head>
 <body>
-<input type="checkbox" onchange="toggleEditor(this.checked);"> Hide Editor
+	<!--<input type="checkbox" onchange="toggleEditor(this.checked);"> Hide Editor-->
+<div>
 <section id="editor">
+<select id="savedpages"><option disabled selected value="$$NONE$$">Choose from saved pages</option></select>
+<button onclick="loadPage();">Load</button>
+<br><input type="text" id="pagename"  placeholder="Name for this page">
+<button onclick="savePage();">Save</button>
+<br><button onclick="downloadPage();">Download</button>
+<br><button id="delbtn" onclick="deletePage();" disabled>Delete</button>
+<input type="checkbox" id="delconfirm" onchange="toggleDelete(this.checked);"> Yes I am sure.
+<br>
 <a id="downloadlink" target="__blank" style="display: none;"></a>
-<textarea id="md-src" rows="20" style="margin: 1rem; width: 90%;">
+<textarea id="md-src" rows="25" style="margin: 1rem; width: 90%;">
 CommonMark
 ==========
 
@@ -55,17 +74,9 @@ Adding an Image
 
 ![Fire Team Logo](images/fireteamlogo.jpg)
 </textarea>
-<br>
-<select id="savedpages"><option disabled selected value="$$NONE$$">Choose from saved pages</option></select>
-<button onclick="loadPage();">Load</button>
-<input type="text" id="pagename"  style="margin-left: 3rem;" placeholder="Name for this page">
-<button onclick="savePage();">Save</button>
-<button onclick="downloadPage();">Download</button>
-<button id="delbtn" onclick="deletePage();" style="margin-left: 5rem;" disabled>Delete</button>
-<input type="checkbox" id="delconfirm" onchange="toggleDelete(this.checked);"> Yes I am sure.
-<br><hr>
 </section>
 <section class="page" id="md-block"></section>
+</div>
 <script src="modules/commonmark.min.js"></script>
 <script>
 const pageList = document.getElementById('savedpages');
