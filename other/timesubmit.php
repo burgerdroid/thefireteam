@@ -7,12 +7,18 @@ if (isset($_POST['userid'])) {
     }
     fclose($fh);
     $savedEntries = json_decode($rawdata, true);
-    $userid = md5($_POST['userid']);
+    $userid = $_POST['userid'];
     $savedEntries[$userid] = array();
+    $savedEntries[$userid]['tzoffset'] = $_POST['tzoffset'];
+    $saveEntries[$userid]['times'] = array();
+    for ($i=0; $i <= 23; $i++) {
+		$savedEntries[$userid]['times'][] = 0;
+    }
     foreach($_POST as $key=>$value) {
-        if ($key != "userid") {
-            $savedEntries[$userid][] = $value;
-        } 
+	    if (substr($key,0,9) == 'checkhour') {
+			$idx = (int)explode('hour', $key)[1];
+			$savedEntries[$userid]['times'][$idx] = 1;
+		}	
     }
     $rawdata = json_encode($savedEntries);
     $fh = fopen('chaindata.json', 'w');

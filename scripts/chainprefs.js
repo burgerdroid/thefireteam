@@ -1,6 +1,8 @@
 const nowSpan = document.getElementById('nowtime');
 const timeTable = document.getElementById('timetable').getElementsByTagName('tbody');
 const offset = parseInt(new Date().getTimezoneOffset() / -60);
+document.getElementById('tzoffset').value = offset;
+document.getElementById('displaytzoffset').innerHTML = offset;
 let userId;
 let tornApiObj = new tornApi("user");
         
@@ -29,16 +31,15 @@ function loadLocal() {
 function saveLocal() {      
     userId = document.getElementById("userid").value;
     localStorage.setItem("uid", userId);
-    let timeData = new Array();
-    timeData['uid'] = userId;
-    timeData['times'] = new Array();
     for (i=0; i<=23; i++) {
         nextId = "checkhour" + i;
         nextCheck = document.getElementById(nextId)
         if (nextCheck.checked == true) {
-            timeData['times'].push(nextCheck.value);
             localStorage.setItem(nextId,nextCheck.value);
         }
+		else if (nextCheck.checked == false) {
+			localStorage.removeItem(nextId);
+		}
     }
     return true;
 }
@@ -71,7 +72,7 @@ function getUserId() {
             localStorage.setItem("uid", userId);
         }
         else {
-            alert("Error: your key must be very wrong result in an invalid URL. Ensure it is copied from your API key settings in Torn.");
+            alert("Error: your key must be very wrong resulting in an invalid URL. Ensure it is copied from your API key settings in Torn.");
         }
     });
 }
@@ -87,19 +88,6 @@ function stopTimeUpdate() {
 }
 
 
-function fillTimeTable() {
-    for (let i=0; i<=23; i++) {
-        let row = timeTable[0].getElementsByTagName('tr')[i];
-        let cell = row.getElementsByTagName('td')[1];
-        let localHour = (i+offset) % 24;
-		if (localHour < 0) {
-			localHour += 24;
-		}
-        cell.innerHTML = ('00'+ localHour).slice(-2) + ":00";
-    }
-}
-
 updateTime();
 const timeUpdater = setInterval(updateTime, 1000);
-fillTimeTable();
 loadLocal();

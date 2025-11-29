@@ -17,54 +17,39 @@
         <span>Chain Organiser</span>
 </h1>
 </header>
+<p>Please select times where it would be suitable for you to work with Faction team mates on a Chain.</p>
+
 <p>Your current date/time/timezone:</p>
 <p><span id="nowtime"></span>
-<br><i>(ensure this is your correct local time)</i></p>
-<p>Please select times where it would be suitable for you to work with Faction team mates on a Chain.</p>
+<br><i>(ensure this is your correct local time)</i></p><br>
 <h2>Fetch Your User ID</h2>
 <form onsubmit="return false;" autocomplete="on">
 Public Key<br>
-<input id="apikey" name="tornapikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();"><br>
-<input id="getuidbtn" type="submit" onclick="getUserId();" value="GET" disabled="disabled"><br>
-</form>
+<input id="apikey" name="tornapikey" type="text" onchange="keyUpdateCheck();" onpaste="keyUpdateCheck();">
+&nbsp;<input id="getuidbtn" type="submit" onclick="getUserId();" value="GET" disabled="disabled">
+</form><br><br>
 <form method="post" onsubmit="saveLocal();" action="other/timesubmit.php">
 <input id="userid" name="userid" type="text">
-<br>User ID<div id="displayuid">&nbsp;</div>
-<h2>Torn to Local Time conversion</h2>
-<p>Check your suitable hours then click on Submit.  We will schedule daily on-the-hour Chain events for the most popular times.
-<br>Revisit to update this information at any time.</p>
+<input id="tzoffset" name="tzoffset" type="text">
+User ID: <span id="displayuid">&nbsp;</span><br>
+TZ Offset: <span id="displaytzoffset">&nbsp;</span>
+<p>Revisit to update this information at any time.</p>
 <input id="submitBtn" type="submit" value="Submit" disabled="disabled"><br><br>
 <table id="timetable">
 <thead>
 <tr>
-    <th>Torn City Time</th><th>Your Local Time</th>
+    <th colspan="3">Select your Local Time/s</th>
 </tr>
 </thead>       
 <tbody>
-<tr><td><input id="checkhour0" name="checkhour0" type="checkbox" value="00:00">00:00</td><td></td></tr>
-<tr><td><input id="checkhour1" name="checkhour1" type="checkbox" value="01:00">01:00</td><td></td></tr>
-<tr><td><input id="checkhour2" name="checkhour2" type="checkbox" value="02:00">02:00</td><td></td></tr>
-<tr><td><input id="checkhour3" name="checkhour3" type="checkbox" value="03:00">03:00</td><td></td></tr>
-<tr><td><input id="checkhour4" name="checkhour4" type="checkbox" value="04:00">04:00</td><td></td></tr>
-<tr><td><input id="checkhour5" name="checkhour5" type="checkbox" value="05:00">05:00</td><td></td></tr>
-<tr><td><input id="checkhour6" name="checkhour6" type="checkbox" value="06:00">06:00</td><td></td></tr>
-<tr><td><input id="checkhour7" name="checkhour7" type="checkbox" value="07:00">07:00</td><td></td></tr>
-<tr><td><input id="checkhour8" name="checkhour8" type="checkbox" value="08:00">08:00</td><td></td></tr>
-<tr><td><input id="checkhour9" name="checkhour9" type="checkbox" value="09:00">09:00</td><td></td></tr>
-<tr><td><input id="checkhour10" name="checkhour10" type="checkbox" value="10:00">10:00</td><td></td></tr>
-<tr><td><input id="checkhour11" name="checkhour11" type="checkbox" value="11:00">11:00</td><td></td></tr>
-<tr><td><input id="checkhour12" name="checkhour12" type="checkbox" value="12:00">12:00</td><td></td></tr>
-<tr><td><input id="checkhour13" name="checkhour13" type="checkbox" value="13:00">13:00</td><td></td></tr>
-<tr><td><input id="checkhour14" name="checkhour14" type="checkbox" value="14:00">14:00</td><td></td></tr>
-<tr><td><input id="checkhour15" name="checkhour15" type="checkbox" value="15:00">15:00</td><td></td></tr>
-<tr><td><input id="checkhour16" name="checkhour16" type="checkbox" value="16:00">16:00</td><td></td></tr>
-<tr><td><input id="checkhour17" name="checkhour17" type="checkbox" value="17:00">17:00</td><td></td></tr>
-<tr><td><input id="checkhour18" name="checkhour18" type="checkbox" value="18:00">18:00</td><td></td></tr>
-<tr><td><input id="checkhour19" name="checkhour19" type="checkbox" value="19:00">19:00</td><td></td></tr>
-<tr><td><input id="checkhour20" name="checkhour20" type="checkbox" value="20:00">20:00</td><td></td></tr>
-<tr><td><input id="checkhour21" name="checkhour21" type="checkbox" value="21:00">21:00</td><td></td></tr>
-<tr><td><input id="checkhour22" name="checkhour22" type="checkbox" value="22:00">22:00</td><td></td></tr>
-<tr><td><input id="checkhour23" name="checkhour23" type="checkbox" value="23:00">23:00</td><td></td></tr>
+<tr><td><input id="checkhour0" name="checkhour0" type="checkbox" value="1">00:00</td><td><input id="checkhour8" name="checkhour8" type="checkbox" value="1">08:00</td><td><input id="checkhour16" name="checkhour16" type="checkbox" value="1">16:00</td></tr>
+<tr><td><input id="checkhour1" name="checkhour1" type="checkbox" value="1">01:00</td><td><input id="checkhour9" name="checkhour9" type="checkbox" value="1">09:00</td><td><input id="checkhour17" name="checkhour17" type="checkbox" value="1">17:00</td></tr>
+<tr><td><input id="checkhour2" name="checkhour2" type="checkbox" value="1">02:00</td><td><input id="checkhour10" name="checkhour10" type="checkbox" value="1">10:00</td><td><input id="checkhour18" name="checkhour18" type="checkbox" value="1">18:00</td></tr>
+<tr><td><input id="checkhour3" name="checkhour3" type="checkbox" value="1">03:00</td><td><input id="checkhour11" name="checkhour11" type="checkbox" value="1">11:00</td><td><input id="checkhour19" name="checkhour19" type="checkbox" value="1">19:00</td></tr>
+<tr><td><input id="checkhour4" name="checkhour4" type="checkbox" value="1">04:00</td><td><input id="checkhour12" name="checkhour12" type="checkbox" value="1">12:00</td><td><input id="checkhour20" name="checkhour20" type="checkbox" value="1">20:00</td></tr>
+<tr><td><input id="checkhour5" name="checkhour5" type="checkbox" value="1">05:00</td><td><input id="checkhour13" name="checkhour13" type="checkbox" value="1">13:00</td><td><input id="checkhour21" name="checkhour21" type="checkbox" value="1">21:00</td></tr>
+<tr><td><input id="checkhour6" name="checkhour6" type="checkbox" value="1">06:00</td><td><input id="checkhour14" name="checkhour14" type="checkbox" value="1">14:00</td><td><input id="checkhour22" name="checkhour22" type="checkbox" value="1">22:00</td></tr>
+<tr><td><input id="checkhour7" name="checkhour7" type="checkbox" value="1">07:00</td><td><input id="checkhour15" name="checkhour15" type="checkbox" value="1">15:00</td><td><input id="checkhour23" name="checkhour23" type="checkbox" value="1">23:00</td></tr>
 </tbody>
 </table>
 </form>

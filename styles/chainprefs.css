@@ -17,12 +17,13 @@ select {
     font-weight: bold;
 }
 
-#userid {
+#tzoffset, #userid {
     display: None;
 }
 
-#displayuid {
-    border: 1px solid black;
+#displaytzoffset, #displayuid {
+    font-weight: bold;
+	font-size: 1.1rem;
     width: 10rem;
     padding: 0.1rem;
 }
