@@ -33,9 +33,9 @@ function loadLocal() {
 
 function saveLocal() {      
     userId = document.getElementById("userid").value;
-    username = document.getElementbyId("username").value;
+    username = document.getElementById("username").value;
     localStorage.setItem("uid", userId);
-    localStoreg.setItem("uname", username);
+    localStorage.setItem("uname", username);
     for (i=0; i<=23; i++) {
         nextId = "checkhour" + i;
         nextCheck = document.getElementById(nextId)
