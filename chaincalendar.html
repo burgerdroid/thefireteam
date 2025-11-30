@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="stylesheet" type="text/css" href="styles/common.css">
+<!--<link rel="stylesheet" type="text/css" href="styles/chainprefs.css">-->
+<title>Chain Calendar</title>
+<script src="scripts/chaindata.js"></script>
+<style>
+table {
+	border-collapse: collapse;
+}
+
+th {
+	padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    text-align: center;
+}
+
+td {
+	border: 1px solid black;
+	border-collapse: collapse;
+	text-align: center;
+    background-color: lightgrey;
+	padding: 0.3rem;
+}
+
+
+.lockedcol tbody tr td:first-child {
+    background-color: orange;
+    font-weight: bold;
+    position: sticky;
+    left: 0;
+}
+
+.available {
+	background-color: yellow;
+}
+
+</style>
+</head>
+<body>
+<header>
+<h1>
+        <span><a href="index.html"><img class="logo" src="images/fireteamlogo.jpg" alt="The Fireteam Logo"></a></span>
+        <span>Chain Calendar</span>
+</h1>
+</header>
+<div class="tscroll">
+<table id="chaincal" class="lockedcol">
+<thead>
+<tr><th>Member</th><th>00</th><th>01</th><th>02</th><th>03</th><th>04</th><th>05</th><th>06</th><th>07</th>
+<th>08</th><th>09</th><th>10</th><th>11</th><th>12</th><th>13</th><th>14</th><th>15</th>
+<th>16</th><th>17</th><th>18</th><th>19</th><th>20</th><th>21</th><th>22</th><th>23</th></tr>
+</thead>
+<tbody id="calbody">
+</tbody>
+</table>
+</div>
+<!--<script src="scripts/chaincalendar.js"></script>-->
+<script>
+  const calBody = document.getElementById('calbody');
+  const offset = parseInt(new Date().getTimezoneOffset() / -60);
+
+  for (var key in chaindata) {
+     let tz = chaindata[key].tzoffset;
+     let row = calBody.insertRow(-1);
+     let cell = row.insertCell(0);
+     cell.textContent = chaindata[key].name;
+     for (var i=0; i<=23; i++) {
+		row.insertCell(-1);
+     }
+     for (var i=0; i<=23; i++) {
+		let convertedHour = i + (offset - tz);
+        if (convertedHour < 0) convertedHour += 24;
+		if (convertedHour > 23) convertedHour -= 24;	
+		row.cells[convertedHour+1].innerHTML = i;
+		if (chaindata[key].times[i] == 1) {
+			row.cells[convertedHour+1].className = "available";
+		}
+     }
+  }
+</script>
+</body>
+</html>
