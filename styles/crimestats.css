@@ -19,10 +19,3 @@
 	font-weight: bold;
 }
 
-.tscroll {
-	width: auto;
-	overflow-x: scroll;
-	margin-bottom: 1rem;
-	border: 1px solid black;
-}
-
