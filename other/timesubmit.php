@@ -26,6 +26,9 @@ if (isset($_POST['userid'])) {
     $fh = fopen('chaindata.json', 'w');
     fwrite($fh, $rawdata);
     fclose($fh);
+	$fh = fopen('../scripts/chaindata.js', 'w');
+    fwrite($fh, 'chaindata = ' . $rawdata . ';');
+    fclose($fh);
 }
 echo "<h1>Your preferences have been saved.</h1>";
 echo '<a href="/index.html">Return to Index</a>';
