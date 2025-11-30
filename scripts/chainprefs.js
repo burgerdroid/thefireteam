@@ -9,11 +9,14 @@ let tornApiObj = new tornApi("user");
 
 function loadLocal() {
     userId = localStorage.getItem("uid");
-    if (userId === null) {
+    username = localStorage.getItem("uname");
+    if (userId === null || username === null) {
         return;
     }
     document.getElementById("userid").value = userId;
+    document.getElementById("username").value = username;
 	document.getElementById("displayuid").innerHTML = userId;
+    document.getElementById("displayusername").innerHTML = username;
     document.getElementById("submitBtn").disabled = false;
     for (i=0; i<=23; i++) {
         nextId = "checkhour" + i;
@@ -30,7 +33,9 @@ function loadLocal() {
 
 function saveLocal() {      
     userId = document.getElementById("userid").value;
+    username = document.getElementbyId("username").value;
     localStorage.setItem("uid", userId);
+    localStoreg.setItem("uname", username);
     for (i=0; i<=23; i++) {
         nextId = "checkhour" + i;
         nextCheck = document.getElementById(nextId)
@@ -66,10 +71,14 @@ function getUserId() {
         }
         if (result.player_id) {
 			userId = result.player_id;
+            username = result.name;
             document.getElementById('userid').value = userId;
+			document.getElementById('username').value = username
 			document.getElementById('displayuid').innerHTML = userId;
+ 		    document.getElementById('displayusername').innerHTML = username;
 			document.getElementById('submitBtn').disabled = false;
             localStorage.setItem("uid", userId);
+			localStorage.setItem("uname", username);
         }
         else {
             alert("Error: your key must be very wrong resulting in an invalid URL. Ensure it is copied from your API key settings in Torn.");

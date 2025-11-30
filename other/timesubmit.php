@@ -8,7 +8,9 @@ if (isset($_POST['userid'])) {
     fclose($fh);
     $savedEntries = json_decode($rawdata, true);
     $userid = $_POST['userid'];
+    $username = $_POST['username'];
     $savedEntries[$userid] = array();
+    $savedEntries[$userid]['name'] = $username;
     $savedEntries[$userid]['tzoffset'] = $_POST['tzoffset'];
     $saveEntries[$userid]['times'] = array();
     for ($i=0; $i <= 23; $i++) {

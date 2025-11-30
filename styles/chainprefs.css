@@ -17,7 +17,7 @@ select {
     font-weight: bold;
 }
 
-#tzoffset, #userid {
+#tzoffset, #userid, #username {
     display: None;
 }
 

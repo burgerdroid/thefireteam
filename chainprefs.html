@@ -30,7 +30,9 @@ Public Key<br>
 </form><br><br>
 <form method="post" onsubmit="saveLocal();" action="other/timesubmit.php">
 <input id="userid" name="userid" type="text">
+<input id="username" name="username" type="text">
 <input id="tzoffset" name="tzoffset" type="text">
+<h3>Hi <span id="displayusername">&nbsp;</span></h3>
 User ID: <span id="displayuid">&nbsp;</span><br>
 TZ Offset: <span id="displaytzoffset">&nbsp;</span>
 <p>Revisit to update this information at any time.</p>
@@ -54,6 +56,6 @@ TZ Offset: <span id="displaytzoffset">&nbsp;</span>
 </table>
 </form>
 <script src="scripts/tornapi.js"></script>
-<script src="scripts/chainprefs.js?v=4"></script>
+<script src="scripts/chainprefs.js?v=5"></script>
 </body>
 </html>
