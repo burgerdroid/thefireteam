@@ -75,17 +75,39 @@ td {
 <script>
   const calBody = document.getElementById('calbody');
   const offset = parseInt(new Date().getTimezoneOffset() / -60);
+  
+  // first add a row for Torn City Time
+  let tz = 0;
+  let row = calBody.insertRow(-1);
+  let cell = row.insertCell(0);
+  cell.textContent = "Torn City Time"
+  cell.style.backgroundColor = '#333';
+  cell.style.color = '#fff';
 
+
+  for (var i=0; i<=23; i++) {
+    row.insertCell(-1);
+  }
+  for (var i=0; i<=23; i++) {
+    let convertedHour = i + offset;
+    if (convertedHour < 0) convertedHour += 24;
+    if (convertedHour > 23) convertedHour -= 24;
+    row.cells[convertedHour + 1].innerHTML = i;
+    row.cells[convertedHour + 1].style.backgroundColor = '#333';
+    row.cells[convertedHour + 1].style.color = '#fff';
+  }
+
+  // process the recorded member data
   for (var key in chaindata) {
-     let tz = chaindata[key].tzoffset;
-     let row = calBody.insertRow(-1);
-     let cell = row.insertCell(0);
+     tz = chaindata[key].tzoffset;
+     row = calBody.insertRow(-1);
+     cell = row.insertCell(0);
      cell.textContent = chaindata[key].name;
      for (var i=0; i<=23; i++) {
 		row.insertCell(-1);
      }
      for (var i=0; i<=23; i++) {
-		let convertedHour = i + (offset - tz);
+		convertedHour = i + (offset - tz);
         if (convertedHour < 0) convertedHour += 24;
 		if (convertedHour > 23) convertedHour -= 24;	
 		row.cells[convertedHour+1].innerHTML = i;
