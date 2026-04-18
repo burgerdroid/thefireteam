@@ -9,7 +9,17 @@
 <link rel="stylesheet" type="text/css" href="styles/common.css">
 <!--<link rel="stylesheet" type="text/css" href="styles/chainprefs.css">-->
 <title>Chain Calendar</title>
-<script src="scripts/chaindata.js"></script>
+<script>
+<?php
+$fh = fopen('./other/chaindata.json','r');
+$rawdata = "";
+while ($line = fgets($fh)) {
+    $rawdata = $rawdata . $line;
+}
+fclose($fh);
+echo "chaindata = " . $rawdata . ";";
+?>
+</script>
 <style>
 table {
 	border-collapse: collapse;
