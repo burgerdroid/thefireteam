@@ -1,13 +1,23 @@
 body {
- font-size: 12pt;
+ font-size: 12px;
  margin: 0;
  margin-top: 1rem;
  margin-left: 1rem;
 }
 
 h1 {
- font-size: 16pt;
- margin: 0;
+ font-size: 24px;
+ margin: 12px;
+}
+
+h2 {
+ font-size: 18px;
+ margin: 12px;
+}
+
+h3 {
+ font-size: 16px;
+ margin: 12px;
 }
 
 p, ul, ol, hr {
